@@ -1,0 +1,29 @@
+{
+
+  "events":
+  [ 
+    {
+      "what": "Dr Appt",
+      "where": "Pediatrics Assoc.",
+      "who": "Sydney",
+      "from": {
+        "date": "",
+        "time": "",
+      }
+      "to": {
+        "date": "",
+        "time": "",
+      }
+      "notes": "follow-up from fall",
+      "reminders": true
+    } 
+  ]
+  "shopping":
+  [
+    {
+      "groceries": [],
+      "misc": []
+    }
+  ]
+
+}
