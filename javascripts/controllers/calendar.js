@@ -1,14 +1,18 @@
-define(["jquery", "firebase", "bootstrap", "hbs", "moment", "fullcalendar", "scheduler"], 
-  function($, _firebase, bootstrap, Handlebars, moment, fullcalendar, scheduler) {
+app.controller("CalendarCtrl",
+  function($scope) {
 
+  
+    // This is the calendar to display
     $(document).ready(function() {
 
       // page is now ready, initialize the calendar...
 
       $('#calendar').fullCalendar({
           // put your options and callbacks here
+        // removes liscencing info for developers  
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 
+        // creates the buttons in the calendar header
         customButtons: {
           myCustomButton: {
             text: 'Shopping List!',
@@ -24,9 +28,6 @@ define(["jquery", "firebase", "bootstrap", "hbs", "moment", "fullcalendar", "sch
         }
       })
 
-    }); //closes line 4
-
-
-
-}); //closes line 1-2
-
+    }); //closes line 5
+  
+}); //closes lines 1-2

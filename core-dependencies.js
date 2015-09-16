@@ -8,8 +8,9 @@ define(function (require) {
             fullcalendar = require("fullcalendar"),
             bootstrap = require("bootstrap"),
             scheduler = require("scheduler"),
-            hbs = require("hbs");
+            
 
     };
 });
+
 
