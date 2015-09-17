@@ -14,7 +14,9 @@
   </head>
 
   <body ng-app="familyCalendar"> 
-    <div ng-view> calendar</div>
+
+    <!-- this div is where the calendar will populate --> 
+    <div ng-view>calendar</div>
      
 
     
@@ -35,11 +37,14 @@
     <script src="lib/bower_components/fullcalendar/dist/fullcalendar.js"></script>
     <script src="lib/bower_components/fullcalendar-scheduler/dist/scheduler.js"></script>
     <script src="javascripts/app.js"></script>  
+    <script src="javascripts/factories/uid.js"></script>
     <script src="javascripts/controllers/auth.js"></script>
     <script src="javascripts/controllers/calendar.js"></script> 
     <script src="javascripts/controllers/add-events.js"></script>
     <script src="javascripts/controllers/shop.js"></script>
     <script src="javascripts/controllers/birthdays.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script>
+
     
     
   </body>
