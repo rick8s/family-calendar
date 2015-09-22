@@ -1,32 +1,112 @@
 <!--login modal-->
 <div id="loginModal" class="hidden" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content">
+        <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h1 class="text-center">Login</h1>
-      </div>
-      <div class="modal-body">
-          <form class="form col-md-12 center-block">
-            <div class="form-group">
-              <input id="emailInput" type="text" class="form-control input-lg" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input id="pswdInput" type="password" class="form-control input-lg" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <button id="signIn" class="btn btn-primary btn-lg btn-block">Sign In</button>
-              <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
-            </div>
-          </form>
-      </div>
-      <div class="modal-footer">
+        </div>
+        <div class="modal-body">
+            <form class="form col-md-12 center-block">
+              <div class="form-group">
+                <input id="emailInput" type="text" class="form-control input-lg" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input id="pswdInput" type="password" class="form-control input-lg" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <button id="signIn" class="btn btn-primary btn-lg btn-block">Sign In</button>
+                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
           <div class="col-md-12">
-          <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      </div>  
-      </div>
-  </div>
+            <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>  
+        </div>
+    </div>
   </div>
 </div>
 
+<!--add event modal-->
+<div id="addEventModal" class="hidden" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button id="cancel" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Add an Event</h1>
+        </div>
+        <div class="modal-body">
+            <form id="newEvent" class="form col-md-12 center-block">
+              <div class="row" >
+                <div class="col-md-6 col-xs-6center">
+                  <h4>Date:</h4>
+                  <div>
+                    <h3 id="dater"></h3>
+                  </div>
+                  <h4>What:</h4>
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                    <input id="eTitle" for="eventTitle" type="text" class="form-control" ng-model="addEvent.title" placeholder="Event Name" aria-describedby="sizing-addon1">
+                  </div>
+                  <h4>Where:</h4>
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+                    <input id="eLoc" for="eventLocation" type="text" class="form-control" ng-model="addEvent.location" placeholder="Events location" aria-describedby="sizing-addon1">
+                  </div>
+                  <h4>Who:</h4>
+                  <div id="eWho" for="eventPerson" class="btn-group" ng-model="addEvent.who">
+                    <input id="allIn" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'">All</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'">Rick</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'">Susan</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'">Neal</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'">Sydney</button>
+                  </div>
+                  <h4>Repeats:</h4>
+                  <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></span>
+                    <input id="eRep" for="eventRepeat" type="text" class="form-control" ng-model="addEvent.repeat" placeholder="Never" aria-describedby="sizing-addon1">
+                  </div>
+                  <h4>From:</h4>
+                  <div class="input-group clockpicker">
+                    <input id="eStart" type="text" class="form-control" value="12:00">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                  </div>
+                  <!-- div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-clock" aria-hidden="true"></span></span>
+                    <input for="eventFrom" type="text" class="form-control" ng-model="addEvent.from" placeholder="" aria-describedby="sizing-addon1"> -->
+
+                    <h4>To:</h4>
+                    <div class="input-group clockpicker">
+                      <input id="eStop" type="text" class="form-control" value="12:00">
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                    </div>
+                      <!-- <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-clock" aria-hidden="true"></span></span>
+                    <input for="eventTime" type="text" class="form-control" ng-model="addEvent:to" placeholder="" aria-describedby="sizing-addon1"> -->
+                  </div>
+                  
+                  <br><br>
+                  <button id="addEvent" type="submit" ng-click="addEvent()">Add It!</button>
+                  <a href="/#"><button type="submit">Close</button></a>
+                </div>  
+            </form>
+        </div>
+        <div class="modal-footer">
+          <div class="col-md-12">
+            <button id="cancel" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>  
+        </div>
+    </div>
+  </div>
+</div>
+
+<div style="border:solid 2px gold;">
 <div id='calendar'></div>
+</div>
+
+

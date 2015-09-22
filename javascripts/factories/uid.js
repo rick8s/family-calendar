@@ -17,4 +17,4 @@ app.factory("uid", function() {
   };
 });
 
-// *Set it as a dependency in a controller
+// *Set it as a dependency in a controller 

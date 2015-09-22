@@ -1,0 +1,54 @@
+     
+      <div class="row" >
+        <div class="col-md-6 col-xs-6center">
+          <h4>What:</h4>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+            <input for="eventTitle" type="text" class="form-control" ng-model="addEvent.title" placeholder="Event Name" aria-describedby="sizing-addon1">
+          </div>
+          <h4>Where:</h4>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+            <input id="eLoc" for="eventLocation" type="text" class="form-control" ng-model="addEvent.location" placeholder="Events location" aria-describedby="sizing-addon1">
+          </div>
+          <h4>Who:</h4>
+          <div id="eWho" for="eventPerson" class="btn-group" ng-model="addEvent.who">
+            <button type="button" class="btn btn-primary " value="All">All</button>
+            <button type="button" class="btn btn-primary " value="Rick">Rick</button>
+            <button type="button" class="btn btn-primary " value="Susan">Susan</button>
+            <button type="button" class="btn btn-primary " value="Neal">Neal</button>
+            <button type="button" class="btn btn-primary " value="Sydney">Sydney</button>
+          </div>
+          <h4>Repeats:</h4>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></span>
+            <input id="eRep" for="eventRepeat" type="text" class="form-control" ng-model="addEvent.repeat" placeholder="Never" aria-describedby="sizing-addon1">
+          </div>
+          <h4>From:</h4>
+          <div class="input-group clockpicker">
+            <input id="eStart" type="text" class="form-control" value="12:00">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+          </div>
+          <!-- div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-clock" aria-hidden="true"></span></span>
+            <input for="eventFrom" type="text" class="form-control" ng-model="addEvent.from" placeholder="" aria-describedby="sizing-addon1"> -->
+
+            <h4>To:</h4>
+            <div class="input-group clockpicker">
+              <input id="eStop" type="text" class="form-control" value="12:00">
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
+              <!-- <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-clock" aria-hidden="true"></span></span>
+            <input for="eventTime" type="text" class="form-control" ng-model="addEvent:to" placeholder="" aria-describedby="sizing-addon1"> -->
+          </div>
+          
+          <br><br>
+          <button id="addEvent" type="submit" ng-click="addEvent()">Add It!</button>
+          <a href="/#"><button type="submit">Close</button></a>
+        </div>  
+      </div>
+   
