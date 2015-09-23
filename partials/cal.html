@@ -9,13 +9,13 @@
         <div class="modal-body">
             <form class="form col-md-12 center-block">
               <div class="form-group">
-                <input id="emailInput" type="text" class="form-control input-lg" placeholder="Email">
+                <input id="emailInput" type="text" class="form-control input-lg" placeholder="Email"ng-model="email">
               </div>
               <div class="form-group">
-                <input id="pswdInput" type="password" class="form-control input-lg" placeholder="Password">
+                <input id="pswdInput" type="password" class="form-control input-lg" placeholder="Password" ng-model="password">
               </div>
               <div class="form-group">
-                <button id="signIn" class="btn btn-primary btn-lg btn-block">Sign In</button>
+                <button id="signIn" class="btn btn-primary btn-lg btn-block" ng-click="logIn(email, password)">Sign In</button>
                 <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
               </div>
             </form>

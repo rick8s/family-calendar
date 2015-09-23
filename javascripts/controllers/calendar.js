@@ -1,50 +1,42 @@
-app.controller("CalendarCtrl", 
+app.controller("CalendarCtrl",
   function($scope) {
- 
+
     var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/");
+    // console.log(ref);
     var authData = ref.getAuth();
-    var uid = ref.getAuth().uid;
 
-
+    function checkAuthState(){
     // if already auth then load page
     if (authData) {
       runPage();
-      console.log("Logged in as:", authData.uid);
-    // if not auth, then show login modal 
+    // if not auth, then show login modal
     } else {
-      console.log("Logged out");
+      // console.log("Logged out");
       $('#loginModal').removeClass("hidden");
+        }
+    }
 
-      }
-    //when user submits login creds pass vals to login function
-    $(document).on("click", "#signIn", function(){
-      email = $('#emailInput').val();
-      console.log(email);
-      password = $('#pswdInput').val();
-      console.log(password);
-      $("#loginModal").addClass("hidden");
-      logIn(email, password);
-
-    });
-  // verify user info and send message if incorrect or load page if correct
-  function logIn(email, password) {
+  //when user submits login creds pass vals verify user info
+  //and send message if incorrect or load page if correct
+  $scope.logIn = function(email, password){
+    console.log('logIn fired');
     ref.authWithPassword({
       "email": email,
       "password": password
     }, function(error, authData) {
       if (error) {
         alert('email or password was incorrect');
-        console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData);
+        $("#loginModal").addClass("hidden");
         runPage();
-      }
-    });
-  }
-
+        }
+      });
+  };
 
   // this function will display calendar in DOM
   function runPage() {
+    console.log("runPage fired");
     // this is the calendar to display
     $(document).ready(function() {
       var date = new Date();
@@ -62,23 +54,23 @@ app.controller("CalendarCtrl",
           start: new Date(2012, 7, 1)
         }];
 
-     // call to slidebars
-      $.slidebars({
-        siteClose: true, // true or false
-        disableOver: 480, // integer or false
-        hideControlClasses: true, // true or false
-        scrollLock: false // true or false
-      });
+    //  // call to slidebars
+    //   $.slidebars({
+    //     siteClose: true, // true or false
+    //     disableOver: 480, // integer or false
+    //     hideControlClasses: true, // true or false
+    //     scrollLock: false // true or false
+    //   });
 
-      // page is now ready, initialize the calendar...
+    //   // page is now ready, initialize the calendar...
 
       $('#calendar').fullCalendar({
-          // put your options and callbacks here
+    //       // put your options and callbacks here
 
-        // removes liscencing info for developers  
-        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',      
+    //     // removes liscencing info for developers
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 
-        // creates the buttons in the calendar header
+    //     // creates the buttons in the calendar header
         customButtons: {
           myCustomButton: {
             text: 'Log out of Firebase!',
@@ -104,150 +96,33 @@ app.controller("CalendarCtrl",
           $('#calendar').fullCalendar('changeView', 'agendaDay');
           $('#addEventModal').removeClass("hidden");
           addEvent(d);
-         
 
         },
-    //     dayClick: function(date, allDay, jsEvent, view) {
-    // var $dialogContent = $("#event_edit_container");
+        // dayClick: function(date, allDay, jsEvent, view) {
+        //   var $dialogContent = $("#event_edit_container");
 
-    // y = date.getFullYear();
-    // m = date.getMonth();
-    // d = date.getDate();
+        //   y = date.getFullYear();
+        //   m = date.getMonth();
+        //   d = date.getDate();
 
-    // h1 = date.getHours();
-    // m1 = date.getMinutes();
+        //   h1 = date.getHours();
+        //   m1 = date.getMinutes();
 
-    // h2 = h1 + 1;
-    // m2 = m1;
+        //   h2 = h1 + 1;
+        //   m2 = m1;
 
-    // calEvent = {
-    //     title: 'New Calendar Event',
-    //     editable: true,
-    //     start: new Date(y, m, d, h1, m1),
-    //     end: new Date(y, m, d, h2, m2),
-    //     allDay: false
-    // };
-    //     }
+        //   calEvent = {
+        //       title: 'New Calendar Event',
+        //       editable: true,
+        //       start: new Date(y, m, d, h1, m1),
+        //       end: new Date(y, m, d, h2, m2),
+        //       allDay: false
+        //   };
+        // }
 
-          
-
-        
       }); // closes .fullCalendar() / ends options area
-    
-
-    }); // closes .ready function() 
+    }); // closes .ready function()
   } // closes runPage()
 
-  // get info from new event form and send it to firebase
-  function addEvent(d) {
-
-    // add clock for picking times
-    $('.clockpicker').clockpicker({
-    placement: 'top',
-    align: 'left',
-    autoclose: true,
-    // donetext: 'Done'
-    }); 
-
-    $("#addEvent").click(function(e){
-      e.preventDefault();
-      // retrieve object from checkboxes
-      var who = $scope.checkboxModel;
-      // retrieve object values
-      var whoItBe = [];
-
-      angular.forEach(who, function(value, key) {
-      this.push(value);
-      }, whoItBe);
-      // determine if all or just some included
-      // var whoIn =[];
-
-      // for (i=0; i < whoItBe.length; i++) {
-
-      //   if (whoItBe[i] === 'All') {
-      //     whoIn = whoItBe[i];
-      //   } else { console.log("length", whoItBe[i]);
-      //     // whoIn.push(whoItBe[i]);
-      //   }
-      // } console.log("whoIn", whoIn);
-
-
-
-      
-
-
-     
-      var newEvent = {
-        uid: uid,
-        date: d,
-        title: $("#eTitle").val(),
-        where: $("#eLoc").val(),
-        who: whoItBe,
-        from: $("#eStart").val(),
-        to: $("#eStop").val()
-      }; 
-      $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick');
-      // clear the form
-      $('#addEventModal').find('input:text, input:password, select, textarea').val('');
-      $('#addEventModal').find('input:radio, input:checkbox').prop('checked', false);
-      // hide the modal
-      $("#addEventModal").addClass("hidden");
-
-      console.log("newEvent", newEvent);
-      console.log("uid: ", uid);
-   
-      $.ajax({
-        url: "https://8sfamily-calendar.firebaseio.com/events.json",
-        method: "POST",
-        data: JSON.stringify(newEvent)
-      }).done(function(newData){
-
-
-      }).fail(function(xhr, status, error){
-
-      });
-      console.log("new event", newEvent);
-    });
-
-  }
-
-  function getEvent(){
-    $.ajax({
-        url: "https://8sfamily-calendar.firebaseio.com/events.json",
-        method: "GET",
-        data: JSON
-      }).done(function(newData){
-
-
-      }).fail(function(xhr, status, error){
-
-      });
-  }
-
-  $('#calendar').fullCalendar({
-            editable: true
-  });
-
-  $(document).on("click", "#cancel", function(){
-    // clear the form
-    $('#addEventModal').find('input:text, input:password, select, textarea').val('');
-    $('#addEventModal').find('input:radio, input:checkbox').prop('checked', false);
-    // hide the modal
-    $("#addEventModal").addClass("hidden");
-
-  });
-
-  // can select All or multiple individuals, but not both
-  $(".person").on('change', function(){ console.log(this);
-    $('#allIn').not(this).prop('checked', false);
-  });
-  $("#allIn").on('change', function(){ console.log(this);
-    $('.person').not(this).prop('checked', false);
-  });
-
-
-
-    
-  
-
+  checkAuthState();
 }); //closes lines 1-2
