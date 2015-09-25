@@ -1,4 +1,4 @@
-var app = angular.module("familyCalendar", ['ngRoute']);
+var app = angular.module("familyCalendar", ['ngRoute', 'firebase']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
