@@ -6,7 +6,12 @@ app.config(['$routeProvider',
       when('/', {
         templateUrl: 'partials/cal.html',
         controller: 'CalendarCtrl'
-      }).otherwise ({
+      }).
+      when('/edit-event', {
+        templateUrl: 'partials/edit-event.html',
+        controller: 'eventsCtrl'
+      }).
+      otherwise ({
         redirectTo: '/'
       });
 }]);
