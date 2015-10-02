@@ -71,7 +71,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           myCustomButton: {
             text: 'Log out!',
             click: function() {
-               $location.path("/edit-event");
+               $location.path("/todo");
                $scope.$apply();
              console.log($location.path());
 
@@ -178,12 +178,14 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
         var whoItBe = [];
 
         angular.forEach(who, function(value, key) {
-        this.push(value);
-        }, whoItBe);
+          if (who[key] !== false) {
+            this.push(value);
+          } 
+        }, whoItBe); console.log('whoItBe: ', whoItBe);
       
        
         var newEvent = {
-          uid: FirebaseId,
+          uid: uid, //FirebaseId,
           date: d,
           title: $("#eTitle").val(),
           where: $("#eLoc").val(),
@@ -199,22 +201,12 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
         // hide the modal
         $("#addEventModal").addClass("hidden");
         location.reload();
-
-        console.log("newEvent from click", newEvent);
-        console.log("from click event uid: ", uid);
      
         $.ajax({
           url: "https://8sfamily-calendar.firebaseio.com/events.json",
           method: "POST",
           data: JSON.stringify(newEvent)
         }).done(function(newData){
-
-        // $.ajax({
-        //   url: "https://8sfamily-calendar.firebaseio.com/events.json",
-        //   method: "POST",
-        //   data: JSON.stringify($scope.eventToEdit)
-        // }).done(function(newData){
-
 
         }).fail(function(xhr, status, error){
 
@@ -279,13 +271,28 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
       $("#editEventModal").addClass("hidden");
     };
 
+ 
     // enable selection of All or multiple individuals, but not both for an event
-    $(".person").on('change', function(){ console.log(this);
+    $(".person").on('change', function(){ 
       $('#allIn').not(this).prop('checked', false);
     });
     $("#allIn").on('change', function(){ 
       $('.person').not(this).prop('checked', false);
     });
+
+
+    // set value of All to false when individuals are checked
+    $scope.updateToOne = function() {
+      $scope.checkboxModel.all = false;
+    }; //closes updateOne function
+
+    // set the value of each individual to false if ALL is selected  
+    $scope.updateToAll = function() {
+      $scope.checkboxModel.rick = false;
+      $scope.checkboxModel.susan = false;
+      $scope.checkboxModel.neal = false;
+      $scope.checkboxModel.sydney = false;
+    }; //closes updateAll function
   
 
 

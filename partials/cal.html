@@ -57,11 +57,11 @@
                   </div>
                   <h4>Who:</h4>
                   <div id="eWho" for="eventPerson" class="btn-group" ng-model="addEvent.who">
-                    <input id="allIn" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'">All</button>
-                    <input class="person" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'">Rick</button>
-                    <input class="person" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'">Susan</button>
-                    <input class="person" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'">Neal</button>
-                    <input class="person" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'">Sydney</button>
+                    <input id="allIn" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'" ng-click='updateToAll()'>All</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'" ng-click='updateToOne()'>Rick</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'" ng-click='updateToOne()'>Susan</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'" ng-click='updateToOne()'>Neal</button>
+                    <input class="person" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'" ng-click='updateToOne()'>Sydney</button>
                   </div>
                   <h4>Repeats:</h4>
                   <div class="input-group input-group-lg">

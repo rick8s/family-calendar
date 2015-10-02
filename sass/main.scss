@@ -1,12 +1,70 @@
 // #calendar .fc-sat,
 // #calendar .fc-sun {
 //   background-color: lightyellow;}
+.todo {
+  background-color: lightgreen;
+}
 
+.row {
+  padding-bottom: 25px;
+}
 
 .fc-day-number:hover {
   cursor: pointer; 
   cursor: hand; 
 }
+
+#formContainer {
+  display: inline;
+}
+
+.nav-tabs > li.active > a {
+  background-color: transparent;
+  color: black; //#DD2B2B;
+  border-color: transparent;
+ // font-family: Zapf Chancery, cursive;
+  font-size: 1.3em; 
+  font-style: italic;
+}
+
+span {
+  font-size: 1.5em;
+}
+
+button {
+  border-radius: 5px;
+}
+
+#addTask {
+  float: left;
+  clear: left;
+}
+
+#cancelTask {
+  float: right;
+  clear: right;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.finished {
+  color: grey;
+  text-decoration: line-through;
+}
+
+
+// .task {
+//   float: left;
+ 
+// }
+
+// .people {
+//   float: right;
+//   clear: left;
+
+// }
 
 // #editEventModal {
 //   max-height: 40%;
