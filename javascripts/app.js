@@ -1,5 +1,9 @@
 var app = angular.module("familyCalendar", ['ngRoute', 'firebase']);
 
+// $(document).ready(function() {
+//   $.slidebars();
+// });
+
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

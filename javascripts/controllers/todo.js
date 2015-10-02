@@ -3,50 +3,21 @@ app.controller("TodoCtrl", ["$scope", "$http", "$firebaseObject",
   // $scope.title = "8sFamily Task List";
     $scope.tasks = [];
 
-    var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/");
-    
+    var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/tasks");
+    var tasks = $firebaseObject(ref); 
     var uid = ref.getAuth().uid;
-      
-    $http.get('https://8sfamily-calendar.firebaseio.com/.json').success(function(data) {
-      var tasks = data.tasks;
+    tasks.$bindTo($scope, "tasks");
+     
+    // move from ToDo to Done
+    $scope.moveTask = function(key, task) {
+    ref.child(key).child('finished').set(true);
+    }; 
 
-      angular.forEach(tasks, function(tasks, key) {  
-        this.push(tasks); 
-      }, $scope.tasks);console.log("$scope.tasks: ", $scope.tasks);
-    });
-
-    
-
-      
-
-    // var populateTaskList = function(fb){
-    //   $scope.data = fb;
-    //   $scope.tasks = $scope.data.tasks;
-
-    //   // angular.forEach(tasks, function(tasks, key) {
-    //   //     title: task.title,
-    //   //     who: task.who,
-    //   //     firebaseId: key       
-    //   // });  
-    //   console.log("$scope.tasks: ", $scope.tasks);
-    // };
-  // $scope.todos = [
-  //   { name: "Mow the lawn", complete: "incomplete" },
-  //   { name: "Cut the grass", complete: "complete" },
-  //   { name: "Kill the ants", complete: "incomplete" },
-  //   { name: "Trim the weeds", complete: "complete" }
-  // ];
-
-  // $scope.killTodo = function(todo) {
-  // // Do you see the PFM here of full object comparison?
-  // var todoIndex = $scope.todos.indexOf(todo); 
-
-  //   if (todoIndex >= 0) {
-  //     $scope.todos.splice(todoIndex, 1);
-  //   }
-  // };
-
-  
+    // remove task from firebase
+    $scope.removeTask = function(key, task) {
+      delete $scope.tasks[key];
+    };
+ 
   // create and add a new task to the firebase
   $scope.addTask = function() {
     var who = $scope.checkboxModel;
@@ -64,7 +35,9 @@ app.controller("TodoCtrl", ["$scope", "$http", "$firebaseObject",
       // uid: uid,
       title: $("#tTitle").val(),
       who: whoseIsIt,
+      finished: false,
     }; console.log("newTask", newTask);
+
 
     $.ajax({
       url: "https://8sfamily-calendar.firebaseio.com/tasks.json",

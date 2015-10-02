@@ -33,16 +33,21 @@ span {
 
 button {
   border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+
 }
 
 #addTask {
-  float: left;
-  clear: left;
+  background-color: green;
+  // float: left;
+  // clear: left;
 }
 
 #cancelTask {
-  float: right;
-  clear: right;
+  background-color: red;
+  // float: right;
+  // clear: right;
 }
 
 ul {
@@ -52,6 +57,14 @@ ul {
 .finished {
   color: grey;
   text-decoration: line-through;
+}
+
+#toDo {
+  text-align: center;
+}
+
+#done {
+  text-align: center;
 }
 
 

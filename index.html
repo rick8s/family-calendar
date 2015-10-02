@@ -17,9 +17,9 @@
 
   <body ng-app="familyCalendar"> 
 
-
-    <!-- <div>
-    <nav class="navbar navbar-default navbar-fixed-top">
+<!-- 
+    <div>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="sb-toggle-left navbar-left">
             <div class="navicon-line"></div>
             <div class="navicon-line"></div>
@@ -29,18 +29,21 @@
     </div>
     <div id="sb-site" class="sb-site-container"> -->
 
-        <!-- this div is where the calendar will populate --> 
-        <div ng-view>calendar</div>
-   <!--  </div> 
+       <!-- this div is where the calendar will populate --> 
+    <div ng-view>calendar</div>
+
+    <!-- </div> 
     <div class="sb-slidebar sb-left sb-width-custom" data-sb-width="15%">
           <!-- Your left Slidebar content. -->
-        <nav>
+       <!--  <nav>
             <ul class="sb-menu">
                 <li class="sb-close"><a href="index.html">Calendar</a></li>
                 <li class="sb-close"><a href="add-event.html">Add An Event</a></li>
             </ul>
         </nav>
-    </div>
+    </div>  -->
+    <!-- this div is where the calendar will populate --> 
+    <!-- <div ng-view>calendar</div> -->
 
 
 
@@ -65,17 +68,17 @@
     <script src="lib/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
     <!-- <script src="lib/bower_components/Slidebars/dist/slidebars.min.js"></script> -->
     <script src="javascripts/app.js"></script>  
-    <script src="javascripts/factories/uid.js"></script>
+    <!-- <script src="javascripts/factories/uid.js"></script> -->
     <script src="javascripts/controllers/auth.js"></script>
     <script src="javascripts/controllers/todo.js"></script>
     <script src="javascripts/controllers/calendar.js"></script> 
 
     
 
-    <!-- <script src="javascripts/controllers/slidebar.js"></script>
+    <script src="javascripts/controllers/slidebar.js"></script>
     
-    <script src="javascripts/controllers/shop.js"></script> -->
-    <!--<script src="javascripts/controllers/birthdays.js"></script> -->
+    <!-- <script src="javascripts/controllers/shop.js"></script> -->
+    <!-- <script src="javascripts/controllers/birthdays.js"></script> -->
     <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places"></script> -->
 
     

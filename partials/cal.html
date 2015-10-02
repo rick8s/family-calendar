@@ -92,7 +92,7 @@
                   
                   <br><br>
                   <button id="addEvent" type="submit" >Add It!</button>
-                  <a href="/#"><button type="submit">Close</button></a>
+                  <button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">Close</button>
                 </div>  
             </form>
         </div>
@@ -106,7 +106,7 @@
 </div>
 
 <!-- edit event modal-->
-<div id="editEventModal" class="hidden" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="editEventModal" class="hidden" "modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
