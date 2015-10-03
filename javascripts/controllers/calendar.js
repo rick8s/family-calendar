@@ -2,7 +2,6 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
   function($scope, $http, $firebaseObject, $location) {
 
     var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/");
-    // console.log(ref);
     var authData = ref.getAuth();
     var uid;
     var selectedEventId;
@@ -17,7 +16,6 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
        getData(); 
     // if not auth, then show login modal
     } else {
-      // console.log("Logged out");
       $('#loginModal').removeClass("hidden");
         }
     } 
@@ -25,7 +23,6 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
     //when user submits login creds pass vals verify user info
     //and send message if incorrect or load page if correct
     $scope.logIn = function(email, password){
-      console.log('logIn fired');
       ref.authWithPassword({
         "email": email,
         "password": password
@@ -49,19 +46,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
       });
     };
 
-    // var loadSlidebars = function() {
-    //     // $(document).ready(function() {
-    //       $.slidebars({
-    //         siteClose: true, // true or false
-    //         disableOver: 480, // integer or false
-    //         hideControlClasses: true, // true or false
-    //         scrollLock: false // true or false
-    //       });
-    //     // });
-    //   };
-
     var loadCalendar = function(){
-     console.log("fired");
       $('#calendar').fullCalendar({
 
         schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -73,7 +58,6 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
             click: function() {
                $location.path("/todo");
                $scope.$apply();
-             console.log($location.path());
 
               //ref.unauth(); // this will log you off firebase authentication for now
             }

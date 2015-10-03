@@ -4,9 +4,9 @@
     <div class="row">
       <div class="col-sm-10, col-md-12">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#">{{ title }}</a></li>
+          <li class="active"><a href="#">{{ page }}</a></li>
           <li><a href="#/">Calendar</a></li>
-          <li><a href="/todo">To Do List</a></li>
+          <li><a href="#/todo">To Do List</a></li>
           <!-- <li><a href="#">Profile</a></li> -->
         </ul>
       </div>
@@ -14,82 +14,62 @@
 
    <!--  <div class="row" align = "left"><h3>{{ title }}</h3></div> -->
     <div class="row">
-      <div class="col-md-4 col-lg-4" id="taskInput">
-        
-        <div class="task" >
-          <span>Create a task:</span>
-          <input id="tTitle" type="text" />
+      <div class="col-md-4 col-lg-4" id="itemInput">       
+        <div class="item" >
+          <span>Add an item:</span>
+          <input id="iName" type="text" />
         </div>
-      <!-- </div>  --> 
-     <!--  <div class="col-md-4 col-lg-4" id="whoInput"> -->
-        <div class="people"> 
-          <div id="tWho" for="taskPerson" class="btn-group" ng-model="addTask.who">
-            <span>Whose is it?</span>
-            <input id="allIn" class="decideWho" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'" ng-click='updateAll()'>All</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'" ng-click='updateOne()'>Rick</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'" ng-click='updateOne()'>Susan</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'" ng-click='updateOne()'>Neal</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'" ng-click='updateOne()'>Sydney</button>
+        <div class="group"> 
+          <div id="iType" class="btn-group" ng-model="addItem.group">
+            <input id="merchandise" class="decideWhich" type="checkbox" ng-model="checkboxModel.grocery" ng-true-value="'grocery'" ng-click='updateGrocery()'> Grocery </button>
+            <input id="misc" class="decideWhich" type="checkbox" ng-model="checkboxModel.misc" ng-true-value="'misc'" ng-click='updateMisc()'> Miscellaneous </button>     
           </div>
-        </div> <!-- closes people -->
-      <!-- </div> --> <!-- closes id=whoInput -->
-      <!-- <div class="col-md-2 col-lg-2" id="addButton"> -->
-        <button id="addTask" ng-click='addTask()' >Add it!</button><button id="cancelTask" ng-click='cancelTask()' >Cancel it!</button>
-      </div> <!-- closes col taskInput -->
+        </div> <!-- closes group -->  
+        <button id="addItem" ng-click='addItem()' >Add</button><button id="cancelItem" ng-click='cancelItem()' >Cancel</button>
+      </div> <!-- closes col itemInput -->
     </div> <!-- closes row -->
-
-    <div class="row"  id="taskDisplay"></br></br>
+    <div class="row"  id="itemDisplay"></br></br>
       <!-- <div class="col-md-6 col-lg-4" id="space"></div>  --><!-- creates empty space column -->
-      <div class="col-md-4 col-lg-3" id="toDo">
-        <!-- <div>
-          <input type="text" ng-model="searchText" />
-        </div>
-        <div>
-          <input type="text" ng-model="tasks" />
-          <div> {{ tasks }} </div>
-        </div> -->
-        <span><u>To Do:</u></span>
-        
-      </div> <!-- closes id=toDo --> 
-
-      <div class="col-md-4 col-lg-3" id="done">
-        <!-- <div>
-          <input type="text" ng-model="searchText" />
-        </div>
-        <div>
-          <input type="text" ng-model="tasks" />
-          <div> {{ tasks }} </div>
-        </div> -->
-        <span><u>Done:</u></span>
+      <div class="col-md-4 col-lg-3" id="grocery">
+        <span><u>Groceries</u></span>       
+      </div> <!-- closes id=food --> 
+      <div class="col-md-4 col-lg-3" id="misc">
+        <span><u>Misc.</u></span>
       </div> <!-- closes id=done --> 
     </div> <!-- closes row -->
-    <div class="row"  id="taskDisplay"></br></br>
-      <div class="col-md-4 col-lg-3" id="toDoList">
+    <div class="row"  id="itemDisplay"></br></br>
+      <div class="col-md-4 col-lg-3" id="groceryItem">
         <div>
-          <ul ng-repeat="(key, tasks) in tasks">
-            <li ng-if="!tasks.finished"><input type="radio" value="" ng-click="moveTask(key, tasks)">  {{ tasks.title }}: {{ tasks.who.join(", ") }}</li>
+          <ul ng-repeat="(key, items) in items">
+            <li ng-if="items.category == 'grocery' && !items.purchased"><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
             <!-- <li>{{ todo.name }} <button ng-click="killTodo(todo)">Finish</button></li> -->
           </ul>
         </div>
-      </div> <!-- closes id=toDoList --> 
-      <div class="col-md-4 col-lg-3" id="doneList">
+      </div> <!-- closes id=miscItem --> 
+      <div class="col-md-4 col-lg-3" id="miscItem">
         <div>
-          <ul ng-repeat="(key, tasks) in tasks">
-            <li ng-if="tasks.finished" class="finished"><input type="radio" value="" ng-click="removeTask(key, tasks)">  {{ tasks.title }}</li>
-            <!-- <li>{{ todo.name }} <button ng-click="killTodo(todo)">Finish</button></li> -->
+          <ul ng-repeat="(key, items) in items">
+            <li ng-if="items.category == 'misc' && !items.purchased" ><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
           </ul>
         </div>
-      </div> <!-- closes id=doneList --> 
-
-        <!-- <div>
-          Grouped tasks:
-          <select
-            ng-model="theTodo"
-            ng-options="value.name group by value.complete for value in todos">
-          </select>
-        </div> -->
-      
-    </div> <!-- closes row -->
+      </div> <!-- closes id=miscItem --> 
+    </div> <!-- closes itemDisplay -->
+    <div class="row"  id="purchasedDisplay"></br></br>
+      <div class="col-md-4 col-lg-3" id="gotGroceryItem">
+        <div>
+          <ul ng-repeat="(key, items) in items">
+            <li ng-if="items.category == 'grocery' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
+          </ul>
+        </div>
+      </div> <!-- closes id=gotGroceryItem --> 
+      <div class="col-md-4 col-lg-3" id="gotMiscItem">
+        <div>
+          <ul ng-repeat="(key, items) in items">
+            <li ng-if="items.category == 'misc' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
+          </ul>
+        </div>
+      </div> <!-- closes id=gotMiscItem -->       
+    </div> <!-- closes row purchasedDisplay -->
   </div> <!-- closes container-fluid -->
   
 

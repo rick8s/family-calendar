@@ -15,6 +15,10 @@ app.config(['$routeProvider',
         templateUrl: 'partials/todos.html',
         controller: 'TodoCtrl'
       }).
+      when('/shop', {
+        templateUrl: 'partials/shop.html',
+        controller: 'ShopCtrl'
+      }).
       otherwise ({
         redirectTo: '/'
       });

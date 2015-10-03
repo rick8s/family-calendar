@@ -1,9 +1,18 @@
 // #calendar .fc-sat,
 // #calendar .fc-sun {
 //   background-color: lightyellow;}
-.todo {
-  background-color: lightgreen;
+.color-primary-0 { color: #C78E6A } /* Main Primary color */
+.color-primary-1 { color: #FFD3B8 }
+.color-primary-2 { color: #F1BC9B }
+.color-primary-3 { color: #C58156 }
+.color-primary-4 { color: #C16F3C }
+body {
+  background-color:  #6a5750;//#B37560;
 }
+
+// .todo {
+//   background-color: lightgreen;
+// }
 
 .row {
   padding-bottom: 25px;
@@ -61,11 +70,34 @@ ul {
 
 #toDo {
   text-align: center;
+  border: solid black 1px;
 }
 
 #done {
   text-align: center;
+  border: solid black 1px;
 }
+
+#grocery {
+  background-color: #b5a397;
+  text-align: center;
+  border: solid black 1px;
+} 
+
+#misc {
+  background-color: #b5a397;
+  text-align: center;
+  border: solid black 1px;
+}
+
+#gotGroceryItem, #gotMiscItem, #groceryItem, #miscItem {
+  background-color: #b5a397;
+}
+
+.group {
+  color: #f6f1ed;
+}
+
 
 
 // .task {
