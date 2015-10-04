@@ -2,83 +2,99 @@
 <section class="shopping">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10, col-md-12">
+      <div class="col-sm-10, col-md-12" id="navTabs">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#">{{ page }}</a></li>
           <li><a href="#/">Calendar</a></li>
           <li><a href="#/todo">To Do List</a></li>
-          <!-- <li><a href="#">Profile</a></li> -->
         </ul>
       </div>
     </div>
 
-   <!--  <div class="row" align = "left"><h3>{{ title }}</h3></div> -->
     <div class="row">
-      <div class="col-md-4 col-lg-4" id="itemInput">       
-        <div class="item" >
-          <span>Add an item:</span>
-          <input id="iName" type="text" />
-        </div>
-        <div class="group"> 
-          <div id="iType" class="btn-group" ng-model="addItem.group">
-            <input id="merchandise" class="decideWhich" type="checkbox" ng-model="checkboxModel.grocery" ng-true-value="'grocery'" ng-click='updateGrocery()'> Grocery </button>
-            <input id="misc" class="decideWhich" type="checkbox" ng-model="checkboxModel.misc" ng-true-value="'misc'" ng-click='updateMisc()'> Miscellaneous </button>     
+      <div class="col-md-12 col-lg-12" id="itemInput"> 
+        <div class="col-md-1" id="ltInputBuffer"></div>   
+        <div class="col-md-2 col-lg-2" id="ltInput">
+          <div class="row" id="item" >
+            <span>Add an item:</span>
+            
+          </div>
+          <div class="row" id="catSel" >
+           <!--  <span>Category:</span> -->
+          </div>
+        </div> <!-- close col- ltInput -->
+        <div class="col-md-2 col-lg-2" id="inputFields">
+          <div class="row" id="textIn">
+            <input id="iName" type="text" />
+          </div>
+        <div class="row" id="group"> 
+          <!-- <div id="iType" class="btn-group" ng-model="addItem.group"> -->
+            <select name="category" id="singleSelect" ng-model="data.category">
+              <option value="">---Select a Category---</option> <!-- not selected / blank option -->
+              <option value="grocery">Grocery</option> <!-- interpolation -->
+              <option value="misc">Miscellaneous</option>
+            </select><br>
           </div>
         </div> <!-- closes group -->  
-        <button id="addItem" ng-click='addItem()' >Add</button><button id="cancelItem" ng-click='cancelItem()' >Cancel</button>
-      </div> <!-- closes col itemInput -->
+        <div class="col-md-2 col-lg-2" id="rtInput">
+            <div class="row" id="btns" >
+              <button id="addItem" ng-click='addItem()' >Add</button><br><br><button id="cancelItem" ng-click='cancelItem()' >Cancel</button>
+            </div>
+          <div class="row" id="catSel" >
+           <!--  <span>Category:</span> -->
+          </div>
+        </div> <!-- closes col item -->
     </div> <!-- closes row -->
-    <div class="row"  id="itemDisplay"></br></br>
-      <!-- <div class="col-md-6 col-lg-4" id="space"></div>  --><!-- creates empty space column -->
-      <div class="col-md-4 col-lg-3" id="grocery">
-        <span><u>Groceries</u></span>       
-      </div> <!-- closes id=food --> 
-      <div class="col-md-4 col-lg-3" id="misc">
-        <span><u>Misc.</u></span>
-      </div> <!-- closes id=done --> 
-    </div> <!-- closes row -->
-    <div class="row"  id="itemDisplay"></br></br>
-      <div class="col-md-4 col-lg-3" id="groceryItem">
-        <div>
-          <ul ng-repeat="(key, items) in items">
-            <li ng-if="items.category == 'grocery' && !items.purchased"><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
-            <!-- <li>{{ todo.name }} <button ng-click="killTodo(todo)">Finish</button></li> -->
-          </ul>
-        </div>
-      </div> <!-- closes id=miscItem --> 
-      <div class="col-md-4 col-lg-3" id="miscItem">
-        <div>
-          <ul ng-repeat="(key, items) in items">
-            <li ng-if="items.category == 'misc' && !items.purchased" ><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
-          </ul>
-        </div>
-      </div> <!-- closes id=miscItem --> 
-    </div> <!-- closes itemDisplay -->
-    <div class="row"  id="purchasedDisplay"></br></br>
-      <div class="col-md-4 col-lg-3" id="gotGroceryItem">
-        <div>
-          <ul ng-repeat="(key, items) in items">
-            <li ng-if="items.category == 'grocery' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
-          </ul>
-        </div>
-      </div> <!-- closes id=gotGroceryItem --> 
-      <div class="col-md-4 col-lg-3" id="gotMiscItem">
-        <div>
-          <ul ng-repeat="(key, items) in items">
-            <li ng-if="items.category == 'misc' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
-          </ul>
-        </div>
-      </div> <!-- closes id=gotMiscItem -->       
-    </div> <!-- closes row purchasedDisplay -->
+    <div class="row"  id="itemDisplay">
+      <div class="col-md-1 col-lg-1" id="leftBufferCol"></div>
+      <div class="col-md-4 col-lg-4" id="leftCol">
+        <div class="row" id="groceries">
+        <span><i>Groceries</i></span>       
+        </div> <!-- closes id=grocery --> 
+        <div class="row" id="grocList"> <!-- unbought grocery -->
+          <div class="col-md-6 col-lg-6" id="leftColL">
+            <div class="row" id="unpurchased"> <span><small>Unpurchased</small></span></div>
+
+            <ul ng-repeat="(key, items) in items">
+              <li ng-if="items.category == 'grocery' && !items.purchased"><input type="checkbox" ng-click="moveItem(key, items)"> {{ items.name }} </li>
+            </ul>
+          
+          </div> <!-- close leftcol1 -->
+          <div class="col-md-6 col-lg-6" id="leftColR">
+            <div class="row" id="purchased"> <span><small>Purchased</small></span></div>
+            <div class="row" id="finished">
+              <ul ng-repeat="(key, items) in items">
+                <li ng-if="items.category == 'grocery' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
+              </ul>
+            </div>
+          </div> <!-- end leftColR -->
+        </div> <!-- close unbought grocery -->
+      </div> <!-- close leftCol -->
+      <div class="col-md-2 col-lg-2"  id="midBufferCol"></div>
+      <div class="col-md-4 col-lg-4" id="rightCol">
+        <div class="row" id="misc">
+          <span><i>Miscellaneous</i></span>
+        </div> <!-- closes id=misc --> 
+        <div class="row" id="miscList"> <!-- unbought misc -->
+          <div class="col-md-6 col-lg-6" id="rightColL">
+            <div class="row" id="unpurchased"> <span><small>Unpurchased</small></span></div>
+
+            <ul ng-repeat="(key, items) in items">
+              <li ng-if="items.category == 'misc' && !items.purchased" ><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
+            </ul>
+
+          </div> <!-- close rightColR -->
+          <div class="col-md-6 col-lg-6" id="rightColR">
+            <div class="row" id="purchased"> <span><small>Purchased</small></span></div>
+            <div class="row">
+              <ul ng-repeat="(key, items) in items">
+                <li ng-if="items.category == 'misc' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
+              </ul>
+            </div>
+          </div> <!-- close rightColR -->
+        </div> <!-- close unbought misc -->
+      </div> <!-- close rightCol -->
+    </div> <!-- closes row itemDisplay -->
   </div> <!-- closes container-fluid -->
-  
-
- 
-
-  
-
 </section>
-
-
-
 

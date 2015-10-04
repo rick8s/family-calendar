@@ -1,6 +1,6 @@
 app.controller("TodoCtrl", ["$scope", "$http", "$firebaseObject", "$location", 
   function($scope, $http, $firebaseObject, $location) {
-    $scope.page = "Family Task List";
+    $scope.page = "Task List";
     $scope.tasks = [];
 
     var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/tasks");

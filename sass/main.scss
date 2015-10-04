@@ -1,18 +1,13 @@
 // #calendar .fc-sat,
 // #calendar .fc-sun {
-//   background-color: lightyellow;}
-.color-primary-0 { color: #C78E6A } /* Main Primary color */
-.color-primary-1 { color: #FFD3B8 }
-.color-primary-2 { color: #F1BC9B }
-.color-primary-3 { color: #C58156 }
-.color-primary-4 { color: #C16F3C }
+
 body {
-  background-color:  #6a5750;//#B37560;
+  background-color:  #bcd5d1; //b39eb5; //#6a5750;//#B37560; 
 }
 
-// .todo {
-//   background-color: lightgreen;
-// }
+#navTabs {
+  background-color: #1d2120;
+}
 
 .row {
   padding-bottom: 25px;
@@ -36,6 +31,23 @@ body {
   font-style: italic;
 }
 
+.nav-tabs > li.active > a.ng-binding {
+  background-color: #bcd5d1;
+  color: black; //#DD2B2B;
+  border-color: transparent;
+ // font-family: Zapf Chancery, cursive;
+  font-size: 1.3em; 
+  font-style: italic;
+}
+
+.nav-tabs>li>a {
+  color: #bcd5d1;
+}
+
+.nav-tabs>li>a:hover {
+  color: #1d2120;
+}
+
 span {
   font-size: 1.5em;
 }
@@ -44,19 +56,6 @@ button {
   border-radius: 5px;
   margin-left: 5px;
   margin-right: 5px;
-
-}
-
-#addTask {
-  background-color: green;
-  // float: left;
-  // clear: left;
-}
-
-#cancelTask {
-  background-color: red;
-  // float: right;
-  // clear: right;
 }
 
 ul {
@@ -68,37 +67,93 @@ ul {
   text-decoration: line-through;
 }
 
-#toDo {
-  text-align: center;
-  border: solid black 1px;
+.purchased {
+  color: grey;
+  text-decoration: line-through;
 }
 
-#done {
+#groceries, #taskDisplay {
+  background-color: #ba9077;
   text-align: center;
-  border: solid black 1px;
-}
+  border-top: solid black 1px;
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-top-left-radius: 1em;
 
-#grocery {
-  background-color: #b5a397;
-  text-align: center;
-  border: solid black 1px;
 } 
 
 #misc {
-  background-color: #b5a397;
+  background-color: #ba9077;//#b5a397;
   text-align: center;
-  border: solid black 1px;
+  border-top: solid black 1px;
+  border-left: solid black 1px;
+  border-right: solid black 1px;
+  border-top-left-radius: 1em;
+}
+
+#grocList {
+  background-color: #edd9c0;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+#miscList {
+  background-color: #edd9c0;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
 }
 
 #gotGroceryItem, #gotMiscItem, #groceryItem, #miscItem {
-  background-color: #b5a397;
+  background-color: #ba9077;//#b5a397;
 }
 
 .group {
   color: #f6f1ed;
 }
 
+#purchased, #unpurchased {
+  background-color: #ba9077;//#b5a397;
+  text-align: center;
+  font-size: 0.8EM;
+  
+}
+#taskDisplay {
+  border-top-radius: 1em;
+  border-bottom: solid black 1px;
+  border-bottom-right-radius: 2em;
+}
 
+#toDo, #done {
+  background-color: #edd9c0;
+  border-top-left-radius: 1em;
+  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+#toDoList, #didIt {
+  background-color: #edd9c0;
+  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 2em;
+  // border-bottom: solid black 1px;
+  // border-left: solid black 1px;  
+  // border-left: solid black 1px;
+  // border-right: solid black 1px;
+}
+
+#unpurchased {
+  border-bottom: solid black 1px;
+  border-left: solid black 1px;  
+}
+
+#purchased {
+  border-bottom-right-radius: 2em;
+  border-bottom: solid black 1px;
+  border-right: solid black 1px;
+}
+
+#calendar {
+  background-color: #1d2120;
+}
 
 // .task {
 //   float: left;

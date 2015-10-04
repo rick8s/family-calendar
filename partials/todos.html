@@ -2,7 +2,7 @@
 <section class="todo">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-10, col-md-12">
+      <div class="col-sm-10, col-md-12" id="navTabs">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#">{{ page }}</a></li>
           <li><a href="#/">Calendar</a></li>
@@ -11,117 +11,59 @@
         </ul>
       </div>
     </div>
-<!-- 
-    <div class="row" align = "left"><h3>{{ page }}</h3></div> -->
     <div class="row">
-      <div class="col-md-4 col-lg-4" id="taskInput">
-        
-        <div class="task" >
-          <span>Create a task:</span>
-          <input id="tTitle" type="text" />
-        </div>
-      <!-- </div>  --> 
-     <!--  <div class="col-md-4 col-lg-4" id="whoInput"> -->
-        <div class="people"> 
-          <div id="tWho" for="taskPerson" class="btn-group" ng-model="addTask.who">
-            <span>Whose is it?</span>
-            <input id="allIn" class="decideWho" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'" ng-click='updateAll()'>All</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'" ng-click='updateOne()'>Rick</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'" ng-click='updateOne()'>Susan</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'" ng-click='updateOne()'>Neal</button>
-            <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'" ng-click='updateOne()'>Sydney</button>
+      <div class="col-md-12 col-lg-12" id="taskInput">
+        <div class="col-md-1" id="ltInputBuffer"></div> 
+        <div class="col-md-6 col-lg-4" id="ltInput">
+          <div class="row" id="task" >
+            <span>Task name:</span>   
+            <input id="tTitle" type="text" />
           </div>
-        </div> <!-- closes people -->
-      <!-- </div> --> <!-- closes id=whoInput -->
-      <!-- <div class="col-md-2 col-lg-2" id="addButton"> -->
-        <button id="addTask" ng-click='addTask()' >Add it!</button><button id="cancelTask" ng-click='cancelTask()' >Cancel it!</button>
-      </div> <!-- closes col taskInput -->
-    </div> <!-- closes row -->
-
-    <div class="row"  id="taskDisplay"></br></br>
-      <!-- <div class="col-md-6 col-lg-4" id="space"></div>  --><!-- creates empty space column -->
-      <div class="col-md-4 col-lg-3" id="toDo">
-        <!-- <div>
-          <input type="text" ng-model="searchText" />
-        </div>
-        <div>
-          <input type="text" ng-model="tasks" />
-          <div> {{ tasks }} </div>
-        </div> -->
-        <span><u>To Do:</u></span>
-        
-      </div> <!-- closes id=toDo --> 
-
-      <div class="col-md-4 col-lg-3" id="done">
-        <!-- <div>
-          <input type="text" ng-model="searchText" />
-        </div>
-        <div>
-          <input type="text" ng-model="tasks" />
-          <div> {{ tasks }} </div>
-        </div> -->
-        <span><u>Done:</u></span>
-      </div> <!-- closes id=done --> 
-    </div> <!-- closes row -->
-    <div class="row"  id="taskDisplay"></br></br>
-      <div class="col-md-4 col-lg-3" id="toDoList">
-        <div>
-          <ul ng-repeat="(key, tasks) in tasks">
-            <li ng-if="!tasks.finished"><input type="radio" value="" ng-click="moveTask(key, tasks)">  {{ tasks.title }}: {{ tasks.who.join(", ") }}</li>
-            <!-- <li>{{ todo.name }} <button ng-click="killTodo(todo)">Finish</button></li> -->
-          </ul>
-        </div>
-      </div> <!-- closes id=toDoList --> 
-      <div class="col-md-4 col-lg-3" id="doneList">
-        <div>
-          <ul ng-repeat="(key, tasks) in tasks">
-            <li ng-if="tasks.finished" class="finished"><input type="radio" value="" ng-click="removeTask(key, tasks)">  {{ tasks.title }}</li>
-            <!-- <li>{{ todo.name }} <button ng-click="killTodo(todo)">Finish</button></li> -->
-          </ul>
-        </div>
-      </div> <!-- closes id=doneList --> 
-
-        <!-- <div>
-          Grouped tasks:
-          <select
-            ng-model="theTodo"
-            ng-options="value.name group by value.complete for value in todos">
-          </select>
-        </div> -->
-      
-    </div> <!-- closes row -->
+          <div class="row" id="whose" >
+            <span>Who it's for:</span>
+            <div class="people"> 
+              <div id="tWho" for="taskPerson" class="btn-group" ng-model="addTask.who">
+                <input id="allIn" class="decideWho" type="checkbox" ng-model="checkboxModel.all" ng-true-value="'All'" ng-click='updateAll()'>All</button>
+                <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.rick" ng-true-value="'Rick'" ng-click='updateOne()'>Rick</button>
+                <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.susan" ng-true-value="'Susan'" ng-click='updateOne()'>Susan</button>
+                <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.neal" ng-true-value="'Neal'" ng-click='updateOne()'>Neal</button>
+                <input class="person" "decideWho" type="checkbox" ng-model="checkboxModel.sydney" ng-true-value="'Sydney'" ng-click='updateOne()'>Sydney</button>
+              </div>
+            </div> <!-- close people -->
+          </div> <!-- close id=whose -->           
+        </div> <!-- close id=ltInput -->
+          <div class="row" id="btns" >
+            <button id="addTask" ng-click='addTask()' >Add it!</button><button id="cancelTask" ng-click='cancelTask()' >Cancel it!</button>
+          </div> 
+        </div> <!-- closes id=taskInput -->
+      </div> <!-- closes row 14 -->
+      <div class="row"  id="undone">
+        <div class="col-md-1" id="ltDisplayBuffer"></div> 
+        <div class="col-md-4 col-lg-3" id="toDo">
+          <div class="row" id="taskDisplay">
+            <span><i>To Do:</i></span>
+          </div>
+          <div class="row" id="toDoList">
+            <div>
+              <ul ng-repeat="(key, tasks) in tasks">
+                <li ng-if="!tasks.finished"><input type="radio" value="" ng-click="moveTask(key, tasks)">  {{ tasks.title }}: {{ tasks.who.join(", ") }}</li>
+              </ul>
+            </div>
+          </div> <!-- closes id=toDoList --> 
+        </div> <!-- closes id=toDo --> 
+        <div class="col-md-2 col-lg-1"  id="midBufferCol"></div>
+        <div class="col-md-4 col-lg-3" id="done">
+          <div class="row" id="taskDisplay">
+            <span><i>Done:</i></span>
+          </div>
+          <div class="row"  id="didIt">
+            <div>
+              <ul ng-repeat="(key, tasks) in tasks">
+                <li ng-if="tasks.finished" class="finished"><input type="radio" value="" ng-click="removeTask(key, tasks)">  {{ tasks.title }}</li>
+              </ul>
+            </div>
+          </div> <!-- closes id=taskDisplay --> 
+        </div> <!-- close ditIt -->    
+      </div> <!-- closes id=taskDisplay -->
   </div> <!-- closes container-fluid -->
-  
-
- 
-
-  
-
 </section>
-
-
-
-
-
-
-
- <!-- <ul class="list"> -->
-<!--       <li class="item item-divider" ng-repeat="todo in todos | orderBy: 'todo[0].group'">
-        Group: {{todo.todo[0].group}}
-      </li> -->
-      <!-- <li class="item item-checkbox" ng-repeat="todo in todos | orderBy: 'todo[0].task'">
-        <label class="checkbox">
-          <input type="checkbox" ng-click="deleteTodo(todo._id)">
-        </label>
-        {{todo.todo[0].task}}
-      </li>
-    </ul>
-    <div class="list list-inset"> -->
-<!--       <label class="item item-input">
-        <input type="text" placeholder="Grouping" ng-model="$parent.formData.todo.group" required>
-      </label> -->
-     <!--  <label class="item item-input">
-        <input type="text" placeholder="Task" ng-model="$parent.formData.todo.task" required>
-      </label>
-      <button class="button button-block button-positive" ng-click="createTodo()">Create Task</button>
-    </div> -->

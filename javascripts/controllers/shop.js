@@ -20,21 +20,10 @@ app.controller("ShopCtrl", ["$scope", "$http", "$firebaseObject", "$location",
  
   // create and add a new task to the firebase
   $scope.addItem = function() {
-    var category = $scope.checkboxModel;
-    // retrieve object values
-    var whichIsIt = [];
-    
-    // loop over checkboxes to see who was assigned the task
-    angular.forEach(category, function(value, key) {
-      if (category[key] !== false) {
-        this.push(value);
-      }
-    }, whichIsIt); 
     
     var newItem = {
-      // uid: uid,
       name: $("#iName").val(),
-      category: whichIsIt,
+      category: $scope.data.category,
       purchased: false,
     }; console.log("newItem", newItem);
 
@@ -57,32 +46,10 @@ app.controller("ShopCtrl", ["$scope", "$http", "$firebaseObject", "$location",
 
   }; //closes $scope.addTask 
    
-
-  // enable selection of misc or grocery, but not both
-  $("#misc").on('change', function(){ 
-    $('#grocery').not(this).prop('checked', false);
-  });
-  $("#grocery").on('change', function(){ 
-    $('#misc').not(this).prop('checked', false);
-  });
-
-  // set value of misc to false if grocery is selected
-  $scope.updateGrocery = function() {
-    $scope.checkboxModel.misc = false;
-  };
-
-  // set the value of grocery to false if misc is selected  
-  $scope.updateMisc = function() {
-    $scope.checkboxModel.grocery = false;
-  }; 
-
   // clear everything if input is started but canceled
   $scope.cancelItem = function() {
     $('#itemInput').find('input:text, input:password, select, textarea').val('');
-    $('#grocery').not(this).prop('checked', false);
-    $('#misc').not(this).prop('checked', false);
-    $scope.checkboxModel.misc = false;
-    $scope.checkboxModel.grocery = false;
+
 
   }; //closes cancelItem function
 
