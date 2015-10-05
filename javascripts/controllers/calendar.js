@@ -68,13 +68,14 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           center: 'title',
           right: 'month,agendaWeek,basicDay,agendaDay' //placing a space between these will seperate buttons
         },
+        stick: true,
         editable: true,
         displayEventEnd: true,
         dayClick: function(date, jsEvent, view) {
           d = date.format();
           $('#dater').text(d);
           $('#calendar').fullCalendar( 'gotoDate', d );
-          $('#calendar').fullCalendar('changeView', 'agendaDay');
+          // $('#calendar').fullCalendar('changeView', 'agendaDay');
           $('#addEventModal').removeClass("hidden");
           addEvent(d);
         },
@@ -83,15 +84,15 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
         eventClick: function(eventFromCalClick){ 
           $scope.eventToEdit =  $scope.events.events[eventFromCalClick.firebaseId]; 
           selectedEventId =  eventFromCalClick.firebaseId;      
-          console.log("event clicked: ", $scope.eventToEdit);
+          // console.log("event clicked: ", $scope.eventToEdit);
           $scope.$apply();
           $('#editEventModal').removeClass("hidden");
           editEvent();
-          console.log("event id ", eventFromCalClick.firebaseId);
+          // console.log("event id ", eventFromCalClick.firebaseId);
           
         },
         eventRender: function(event, element) {
-            $(element).tooltip({title: event.title});             
+            $(element).tooltip({title: "Loc: " + event.where + "\n" + "Notes: " + event.comment});             
           },
         // drag an event to new day
         eventDrop: function(event, delta, revertFunc) {
@@ -108,7 +109,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           console.log("dragged Id: ",draggedEventId); 
 
          // alert(event.title + " was dropped on " + event.start.format());
-          if (!confirm(event.title + " was dropped on " + event.start.format() + "\n" + "Are you sure about this change?")) {
+          if (!confirm(event.title + " was dropped on " + event.start.format() + "\n\n" + "Are you sure about this change?")) {
             revertFunc();
           }
           location.reload();
@@ -134,11 +135,14 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
 
       angular.forEach(events, function(event, key) {
         $('#calendar').fullCalendar('renderEvent', {
-          title: event.title,
+          title: event.title + '\n' + event.who.join(", "),
           start: new Date(event.date + ' ' + event.from),
           end: new Date(event.date + ' ' + event.to),
+          who: event.who,
+          where: event.where,
+          comment: event.comment,
           firebaseId: key
-        });
+        }, true);
       });
     };
 
@@ -165,7 +169,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           if (who[key] !== false) {
             this.push(value);
           } 
-        }, whoItBe); console.log('whoItBe: ', whoItBe);
+        }, whoItBe); //console.log('whoItBe: ', whoItBe);
       
        
         var newEvent = {
@@ -175,7 +179,8 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           where: $("#eLoc").val(),
           who: whoItBe,
           from: $("#eStart").val(),
-          to: $("#eStop").val()
+          to: $("#eStop").val(),
+          comment: $("#eComment").val()
         }; 
 
         // $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick' );
@@ -184,7 +189,6 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
         $('#addEventModal').find('input:radio, input:checkbox').prop('checked', false);
         // hide the modal
         $("#addEventModal").addClass("hidden");
-        location.reload();
      
         $.ajax({
           url: "https://8sfamily-calendar.firebaseio.com/events.json",
@@ -194,7 +198,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
 
         }).fail(function(xhr, status, error){
 
-        });
+        });  location.reload();
       }); //closes addEvent click function 
     } // closes addEvent()
 
@@ -235,7 +239,12 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
       }); //closes editEvent click function 
     } // closes editEvent()
 
-
+    // remove event from firebase
+    $scope.removeEvent = function(key, event) {
+      var removeRef = new Firebase("https://8sfamily-calendar.firebaseio.com/events/" + selectedEventId);
+      removeRef.remove();
+      location.reload();
+    };
 
 
       // cancel addEvent action and exit form

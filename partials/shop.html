@@ -16,11 +16,11 @@
         <div class="col-md-1" id="ltInputBuffer"></div>   
         <div class="col-md-2 col-lg-2" id="ltInput">
           <div class="row" id="item" >
-            <span>Add an item:</span>
+            <span class="hdg">Add an item:</span>
             
           </div>
           <div class="row" id="catSel" >
-           <!--  <span>Category:</span> -->
+           <!--  <span class="hdg">Category:</span> -->
           </div>
         </div> <!-- close col- ltInput -->
         <div class="col-md-2 col-lg-2" id="inputFields">
@@ -41,7 +41,7 @@
               <button id="addItem" ng-click='addItem()' >Add</button><br><br><button id="cancelItem" ng-click='cancelItem()' >Cancel</button>
             </div>
           <div class="row" id="catSel" >
-           <!--  <span>Category:</span> -->
+           <!--  <span class="hdg">Category:</span> -->
           </div>
         </div> <!-- closes col item -->
     </div> <!-- closes row -->
@@ -49,11 +49,11 @@
       <div class="col-md-1 col-lg-1" id="leftBufferCol"></div>
       <div class="col-md-4 col-lg-4" id="leftCol">
         <div class="row" id="groceries">
-        <span><i>Groceries</i></span>       
+        <span class="hdg"><i>Groceries</i></span>       
         </div> <!-- closes id=grocery --> 
         <div class="row" id="grocList"> <!-- unbought grocery -->
           <div class="col-md-6 col-lg-6" id="leftColL">
-            <div class="row" id="unpurchased"> <span><small>Unpurchased</small></span></div>
+            <div class="row" id="unpurchased"> <span class="hdg"><small>Unpurchased</small></span></div>
 
             <ul ng-repeat="(key, items) in items">
               <li ng-if="items.category == 'grocery' && !items.purchased"><input type="checkbox" ng-click="moveItem(key, items)"> {{ items.name }} </li>
@@ -61,7 +61,7 @@
           
           </div> <!-- close leftcol1 -->
           <div class="col-md-6 col-lg-6" id="leftColR">
-            <div class="row" id="purchased"> <span><small>Purchased</small></span></div>
+            <div class="row" id="purchased"> <span class="hdg"><small>Purchased</small></span></div>
             <div class="row" id="finished">
               <ul ng-repeat="(key, items) in items">
                 <li ng-if="items.category == 'grocery' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>
@@ -73,11 +73,11 @@
       <div class="col-md-2 col-lg-2"  id="midBufferCol"></div>
       <div class="col-md-4 col-lg-4" id="rightCol">
         <div class="row" id="misc">
-          <span><i>Miscellaneous</i></span>
+          <span class="hdg"><i>Miscellaneous</i></span>
         </div> <!-- closes id=misc --> 
         <div class="row" id="miscList"> <!-- unbought misc -->
           <div class="col-md-6 col-lg-6" id="rightColL">
-            <div class="row" id="unpurchased"> <span><small>Unpurchased</small></span></div>
+            <div class="row" id="unpurchased"> <span class="hdg"><small>Unpurchased</small></span></div>
 
             <ul ng-repeat="(key, items) in items">
               <li ng-if="items.category == 'misc' && !items.purchased" ><input type="checkbox" ng-click="moveItem(key, items)">  {{ items.name }} </li>
@@ -85,7 +85,7 @@
 
           </div> <!-- close rightColR -->
           <div class="col-md-6 col-lg-6" id="rightColR">
-            <div class="row" id="purchased"> <span><small>Purchased</small></span></div>
+            <div class="row" id="purchased"> <span class="hdg"><small>Purchased</small></span></div>
             <div class="row">
               <ul ng-repeat="(key, items) in items">
                 <li ng-if="items.category == 'misc' && items.purchased" class="purchased"><input type="checkbox" ng-click="removeItem(key, items)">  {{ items.name }}</li>

@@ -1,0 +1,9 @@
+{
+  "firebase": "8sfamily-calendar",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

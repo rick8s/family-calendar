@@ -34,7 +34,7 @@ body {
 .nav-tabs > li > a:hover {
   color: #1d2120; }
 
-span {
+.hdg {
   font-size: 1.5em; }
 
 button {
@@ -117,5 +117,42 @@ ul {
 
 #calendar {
   background-color: #1d2120; }
+
+#addEventModal, #editEventModal {
+  z-index: 100;
+  position: absolute;
+  margin-top: 100px;
+  margin-right: 20px;
+  margin-left: 100px; }
+
+#addEvent, #editEvent {
+  float: left;
+  clear: left;
+  background-color: #bcd5d1; }
+
+#cancelEvent, #cancelEdit {
+  float: right;
+  clear: right;
+  background-color: #bcd5d1; }
+
+.btnDel {
+  float: middle;
+  background-color: #bcd5d1; }
+
+.modal-header {
+  color: #bcd5d1;
+  background-color: #1d2120; }
+
+.modal-body {
+  background-color: #c7a693; }
+
+.modal-footer {
+  background-color: #c7a693; }
+
+#cancel {
+  color: #bcd5d1; }
+
+#cancelAdd {
+  background-color: #bcd5d1; }
 
 /*# sourceMappingURL=main.css.map */
