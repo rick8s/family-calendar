@@ -1,8 +1,5 @@
-var app = angular.module("familyCalendar", ['ngRoute', 'firebase']);
+var app = angular.module("familyCalendar", ['ngRoute', 'firebase', "pageslide-directive"]);
 
-// $(document).ready(function() {
-//   $.slidebars();
-// });
 
 app.config(['$routeProvider',
   function($routeProvider) {

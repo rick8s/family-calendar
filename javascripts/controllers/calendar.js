@@ -1,5 +1,6 @@
-app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location",
+app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location", 
   function($scope, $http, $firebaseObject, $location) {
+
 
     var ref = new Firebase("https://8sfamily-calendar.firebaseio.com/");
     var authData = ref.getAuth();
@@ -37,6 +38,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           }
         });
     }; // closes logIn function
+      
 
     var getData = function(){
       $http.get('https://8sfamily-calendar.firebaseio.com/.json').success(function(data) {
@@ -54,12 +56,14 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
       // creates the buttons in the calendar header
         customButtons: {
           myCustomButton: {
-            text: 'Log out!',
+            text: 'Log Out',
             click: function() {
-               $location.path("/todo");
-               $scope.$apply();
+              ref.unauth(); // this will log you off firebase authentication for now
+              // $scope.toggle();
+               // $location.path("/todo");
+               // $scope.$apply();
 
-              //ref.unauth(); // this will log you off firebase authentication for now
+              
             }
           }
         },
@@ -92,7 +96,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           
         },
         eventRender: function(event, element) {
-            $(element).tooltip({title: "Loc: " + event.where + "\n" + "Notes: " + event.comment});             
+            $(element).tooltip({title: "Loc: " + event.where + "\n" + " -- " + event.comment});             
           },
         // drag an event to new day
         eventDrop: function(event, delta, revertFunc) {

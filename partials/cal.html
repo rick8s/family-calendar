@@ -195,7 +195,32 @@
     
 
 
-<div>
+<div ng-controller="PageslideCtrl" class="ng-scope">
+  <div id="navBar"> <a id="navBtn" class="small button glyphicon glyphicon-th-list" href="" ng-click="toggle()"></a>
+     
+      <div pageslide="" ps-open="checked" ps-side="left" class="ng-isolate-scope ng-pageslide" style="z-index: 1000; position: fixed; width: 0px; height: 100%; overflow: hidden; transition-duration: 0.5s; transition-property: width, height; top: 0px; bottom: 0px; left: 0px;">
+         <!--  <div style="padding: 20px; display: none;" id="demo-right"> -->
+              <div class="row" id="nav">
+                <ul class="nav">
+                 <!--  <li class="active"><a href="#">{{ page }}</a></li> -->
+                  <li><a href="#/todo" id="taskNav" ng-click="toggle()"><i>Tasks</i></a></li>
+                  <li><a href="#/shop" id="shopNav" ng-click="toggle()"><i>Shopping</i></a></li>
+                  <!-- <li><a href="#">Profile</a></li> -->
+                </ul>
+              </div>
+              <div>
+              <a id="closeNav" ng-click="toggle()" class="button">Close</a>
+     <!--      </div> -->
+          </div>
+      </div>
+  </div>               
+  <pageslide ps-open="checked">
+      <div>        
+      </div>
+  </pageslide>
+</div>
+
+
 <div id='calendar'></div>
  
 

@@ -36,7 +36,7 @@ app.controller("TodoCtrl", ["$scope", "$http", "$firebaseObject", "$location",
       title: $("#tTitle").val(),
       who: whoseIsIt,
       finished: false,
-    }; console.log("newTask", newTask);
+    }; // console.log("newTask", newTask);
 
 
     $.ajax({

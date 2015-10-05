@@ -14,7 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "Slidebars": "~0.10.3",
     "angular": "~1.4.4",
     "angular-filter": "~0.5.5",
     "angular-route": "~1.4.4",
@@ -30,5 +29,8 @@
     "qTip2": "~2.2.1",
     "require-handlebars-plugin": "~0.11.3",
     "requirejs": "~2.1.20"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }

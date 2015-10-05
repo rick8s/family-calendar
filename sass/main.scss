@@ -203,7 +203,55 @@ ul {
   background-color: #bcd5d1;
 }
 
+// Pageslide styles
+#navBar {
+  background-color: #ba9077;
+  color: black;
+}
 
+#taskNav, #shopNav, #closeNav {
+  color: #1d2120;
+} 
+
+#navBtn {
+  padding-left: 10px;
+  color: black
+}
+
+html {
+    overflow-x: hidden;
+}
+.ng-pageslide {
+    background: #bcd5d1;
+    opacity: 0.95;
+}
+body.ng-pageslide-body-open::before {
+  content: '.';
+  display: block;
+  position: absolute;
+  top: 0;
+  background-color: rgb(0,0,0);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0.5;
+  transition: opacity 1s;
+}
+body.ng-pageslide-body-closed::before {
+  transition: opacity 1s;
+  opacity: 0;
+  content: '.';
+  display: block;
+  position: absolute;
+  top: 0;
+  background-color: rgb(0,0,0);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+}
 
 // .task {
 //   float: left;
