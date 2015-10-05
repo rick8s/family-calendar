@@ -59,11 +59,8 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
             text: 'Log Out',
             click: function() {
               ref.unauth(); // this will log you off firebase authentication for now
-              // $scope.toggle();
-               // $location.path("/todo");
-               // $scope.$apply();
-
-              
+              alert("You have logged out!");
+              location.reload();              
             }
           }
         },

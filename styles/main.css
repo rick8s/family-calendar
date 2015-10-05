@@ -118,7 +118,7 @@ ul {
 #calendar {
   background-color: #1d2120; }
 
-#addEventModal, #editEventModal {
+#addEventModal, #editEventModal, #loginModal {
   z-index: 100;
   position: absolute;
   margin-top: 100px;
