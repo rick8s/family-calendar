@@ -184,7 +184,7 @@ app.controller("CalendarCtrl", ["$scope", "$http", "$firebaseObject", "$location
           comment: $("#eComment").val()
         }; 
 
-        // $('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick' );
+        //$('#calendar').fullCalendar( 'renderEvent', newEvent , 'stick' );
         // clear the form
         $('#addEventModal').find('input:text, input:password, select, textarea').val('');
         $('#addEventModal').find('input:radio, input:checkbox').prop('checked', false);
