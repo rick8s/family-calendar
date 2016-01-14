@@ -4,9 +4,9 @@ NSS Front end capstone project
 ### Functionality
 1. Ability to add, update or delete an event to the calendar view
 2. Ability to drag an existing event from its current date to a new date and have it update in the database.
-3. Create a shopping list where items can be moved to 'purchased' once it has been added to your cart, and deleted once user is finished.
+3. Create a shopping list where items can be moved to 'purchased' once it has been added to your cart, and deleted once user is finished.   
   i. Shopping list has two categories: grocery and miscellaneous.
-4. Todo list where a task can be added and assigned to an individual.
+4. Todo list where a task can be added and assigned to an individual.   
   i. Task can be moved to a completed column prior to being deleted.
 
 ### Technologies
